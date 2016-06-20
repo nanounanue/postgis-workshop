@@ -1,203 +1,232 @@
-* A little of theory
+* a little of theory
 
-** Spatial Database
-
-
-- Storage of spatial data
-- Analysis of geographic data
-- Manipulation of spatial objects just like the other database objects
-  - Creation of subsets of data
-  - Fixing geographic data
-- Database backend for apps
-
-** Spatial data
-
-- Data which describes or represents either a location or a shape
-
-- Points, Lines, Polygons
-
-- Besides the geometrical properties, the spatial data has attributes.
-
-** Spatial data
-
-- Examples:
-  - Geocodable address
-  - Crime patterns
-  - EMS / patient location
-  - Weather information
-  - City planning
-  - Hazard detection
-
-** Relationships
-
-- Proximity
-- Adjacency (touching,connectivity)
-- Containment
-
-** Operations
-
-- Area
-- Length
-- Intersection
-- Union
-- Buffer
+** spatial database
 
 
-** Why a db instead of a file?
+- storage of spatial data
+- analysis of geographic data
+- manipulation of spatial objects just like the other database objects
+  - creation of subsets of data
+  - fixing geographic data
+- database backend for apps
 
-Spatial data is usually related to other types of data.
+** spatial data
 
-** How load data to the db?
+- data which describes or represents either a location or a shape
+
+- points, lines, polygons
+
+- besides the geometrical properties, the spatial data has attributes.
+
+** spatial data
+
+- examples:
+  - geocodable address
+  - crime patterns
+  - ems / patient location
+  - weather information
+  - city planning
+  - hazard detection
+
+** relationships
+
+- proximity
+- adjacency (touching,connectivity)
+- containment
+
+** operations
+
+- area
+- length
+- intersection
+- union
+- buffer
+
+
+** why a db instead of a file?
+
+spatial data is usually related to other types of data.
+
+** how load data to the db?
 
 - `shp2pgsql`
-  - Imports standard *ESRI* shapefiles and `DBF`
+  - imports standard *esri* shapefiles and `dbf`
 
 - `ogr2ogr`
-  - Imports 20 different vector and flat files
+  - imports 20 different vector and flat files
 
 
-** The spatial data that is not spatial data
+** the spatial data that is not spatial data
 
-| Longitude |   Latitude | Disease | Date       |
+| longitude |   latitude | disease | date       |
 |-----------+------------+---------+------------|
-| 26.870436 | -31.909519 | Mumps   | 13/12/2008 |
-| 26.868682 | -31.909259 | Mumps   | 24/12/2008 |
-| 26.867707 | -31.910494 | Mumps   | 22/01/2009 |
-| 26.854908 | -31.920759 | Measles | 11/01/2009 |
-| 26.855817 | -31.921929 | Measles | 26/01/2009 |
-| 26.852764 | -31.921929 | Measles | 10/02/2009 |
-| 26.854778 | -31.925112 | Measles | 22/02/2009 |
-| 26.869072 | -31.911988 | Mumps   | 02/02/2009 |
+| 26.870436 | -31.909519 | mumps   | 13/12/2008 |
+| 26.868682 | -31.909259 | mumps   | 24/12/2008 |
+| 26.867707 | -31.910494 | mumps   | 22/01/2009 |
+| 26.854908 | -31.920759 | measles | 11/01/2009 |
+| 26.855817 | -31.921929 | measles | 26/01/2009 |
+| 26.852764 | -31.921929 | measles | 10/02/2009 |
+| 26.854778 | -31.925112 | measles | 22/02/2009 |
+| 26.869072 | -31.911988 | mumps   | 02/02/2009 |
 
-(The ~disease~  and ~date~ columns are the *attributes* of this data)
+(the ~disease~  and ~date~ columns are the *attributes* of this data)
 
-** /Shape files/
+** /shape files/
 
-- Stored in files on the computer
-- The most common one is probably the 'shape file'
-  - It consists of at least three different files that work together to store vector data
+- stored in files on the computer
+- the most common one is probably the 'shape file'
+  - it consists of at least three different files that work together to store vector data
 
-| Extension | Description         |
+| extension | description         |
 |-----------+---------------------|
-| ~.shp~    | The geometry file   |
-| ~.dbf~    | The attributes file |
-| ~.shx~    | Index file          |
+| ~.shp~    | the geometry file   |
+| ~.dbf~    | the attributes file |
+| ~.shx~    | index file          |
 
 
 
-** Vector data
+** vector data
 
-- Is stored as a series of X,Y coordinate pairs inside the computer's memory.
-- Vector data is used to represent points (1 vertex) , lines (polyline) (2 or more vertices, but the first and the last one are different) and areas (polygons)..
-- A vector feature has its shape represented using geometry.
-- The geometry is made up of one or more interconnected vertices.
-- A vertex describes a position in space using an x, y and optionally z axis.
-- The X and Y values will depend on the Coordinate Reference System (CRS) being used.
+- is stored as a series of x,y coordinate pairs inside the computer's memory.
+- vector data is used to represent points (1 vertex) , lines (polyline) (2 or more vertices, but the first and the last one are different) and areas (polygons)..
+- a vector feature has its shape represented using geometry.
+- the geometry is made up of one or more interconnected vertices.
+- a vertex describes a position in space using an x, y and optionally z axis.
+- the x and y values will depend on the coordinate reference system (crs) being used.
 
-** Problems with vector data
+** problems with vector data
 
-#+CAPTION: Image from /A Genle introduction to GIS/ *Sutton T., Dassau O., Sutton M.* ~2009~
+#+caption: image from /a genle introduction to gis/ *sutton t., dassau o., sutton m.* ~2009~
 [[file:./images/sliver.png]]
 
 
-#+CAPTION: Image from /A Genle introduction to GIS/ *Sutton T., Dassau O., Sutton M.* ~2009~
+#+caption: image from /a genle introduction to gis/ *sutton t., dassau o., sutton m.* ~2009~
 [[file:images/overshoot_undershoot.png]]
 
-** Raster data
+** raster data
 
-- Stored as a grid of values
-- Each /cell/ or /pixel/ represents a geographical region, and the value of the pixel represents some attribute of the region
-- Use it when you want to represent a continuous information across an area
-- Multi-band images, each band contains different information
+- stored as a grid of values
+- each /cell/ or /pixel/ represents a geographical region, and the value of the pixel represents some attribute of the region
+- use it when you want to represent a continuous information across an area
+- multi-band images, each band contains different information
 
-#+CAPTION: Image from /A Genle introduction to GIS/ *Sutton T., Dassau O., Sutton M.* ~2009~
+#+caption: image from /a genle introduction to gis/ *sutton t., dassau o., sutton m.* ~2009~
 [[file:images/raster.png]]
 
 
-** Problems with raster data
+** problems with raster data
 
-- High resolution raster data requires a huge amount of computer storage.
-
-
-* Demo / Exercise
-
-** Connect to the db
-
-#+BEGIN_SRC :eval never
-Host:  gis-tutorial.c5faqozfo86k.us-west-2.rds.amazonaws.com
-Port: 5432
-Username: dssg_gis
-Password: dssg-gis
-DB Name:gis_tutorial
-#+END_SRC
+- high resolution raster data requires a huge amount of computer storage.
 
 
-#+BEGIN_SRC sh :eval never
-ssh -fNT -L 8889:gis-tutorial.c5faqozfo86k.us-west-2.rds.amazonaws.com:5432 -i ~/.ssh/dssg-2016 sedesol.dssg.io  ## ssh tunneling
-#+END_SRC
+* demo / exercise
+
+** connect to the db
+
+#+begin_src sh :eval never
+host:  gis-tutorial.c5faqozfo86k.us-west-2.rds.amazonaws.com
+port: 5432
+username: dssg_gis
+password: dssg-gis
+db name:gis_tutorial
+#+end_src
 
 
-#+BEGIN_SRC sh :eval never
-psql -h localhost -p 8889 -U dssg_gis  gis_tutorial
-#+END_SRC
+#+begin_src sh :eval never
+ssh -fnt -l 8889:gis-tutorial.c5faqozfo86k.us-west-2.rds.amazonaws.com:5432 -i ~/.ssh/dssg-2016 sedesol.dssg.io  ## ssh tunneling
+#+end_src
 
-** Setup
 
-- Create an ~schema~ using your ~github~ account
+#+begin_src sh :eval never
+psql -h localhost -p 8889 -u dssg_gis  gis_tutorial
+#+end_src
+
+** setup
+
+- create an ~schema~ using your ~github~ account
   - (mine is ~nanounanue~)
 
-#+BEGIN_SRC sql :eval never
+#+begin_src sql :eval never
 create schema nanounanue;
-#+END_SRC
+#+end_src
 
-** Upload the shapefiles
+** upload the shapefiles
 
-- There are several /shapefiles/ in the ~data~ directory
+- there are several /shapefiles/ in the ~data~ directory
 
-- We can see some information from the files
-#+BEGIN_SRC sh :eval never
+- we can see some information from the files
+
+#+begin_src sh :eval never
 ogr2ogr -al roads.shp
-#+END_SRC
+#+end_src
 
-Observe that the projection is
+observe that the projection is
 
-#+BEGIN_SRC sh :eval never
+#+begin_src sh :eval never
 ...
-PROJCS["NAD83_Massachusetts_Mainland",
-    GEOGCS["GCS_North_American_1983",
-        DATUM["North_American_Datum_1983",
-            SPHEROID["GRS_1980",6378137,298.257222101]],
-        PRIMEM["Greenwich",0],
-        UNIT["Degree",0.017453292519943295]],
-    PROJECTION["Lambert_Conformal_Conic_2SP"],
-    PARAMETER["standard_parallel_1",42.68333333333333],
-    PARAMETER["standard_parallel_2",41.71666666666667],
-    PARAMETER["latitude_of_origin",41],
-    PARAMETER["central_meridian",-71.5],
-    PARAMETER["false_easting",200000],
-    PARAMETER["false_northing",750000],
-    UNIT["Meter",1]]
+projcs["nad83_massachusetts_mainland",
+    geogcs["gcs_north_american_1983",
+        datum["north_american_datum_1983",
+            spheroid["grs_1980",6378137,298.257222101]],
+        primem["greenwich",0],
+        unit["degree",0.017453292519943295]],
+    projection["lambert_conformal_conic_2sp"],
+    parameter["standard_parallel_1",42.68333333333333],
+    parameter["standard_parallel_2",41.71666666666667],
+    parameter["latitude_of_origin",41],
+    parameter["central_meridian",-71.5],
+    parameter["false_easting",200000],
+    parameter["false_northing",750000],
+    unit["meter",1]]
 ...
-#+END_SRC
+#+end_src
 
-This projection measures the *area* in meters. But
+this projection measures the *area* in meters. but
 
-- Using ~shp2psql~ tool upload the following files: ~roads~, ~land~, ~hydrology~
+- using ~shp2psql~ tool upload the following files: ~roads~, ~land~, ~hydrology~
 
-#+BEGIN_SRC sh :eval never
-shp2psql --host=localhost --port=8889 --username=dssg_gis -f roads.shp gis tutorial.roads
-## If you want to change the projection to WGS 1984 (The one used in Google Maps) you need to add
+#+begin_src sh :eval never
+shp2psql --host=localhost --port=8889 --username=dssg_gis -f roads.shp gis tutorial.roads | psql -h localhost -p 8889 -u dssg_gis  gis_tutorial
+## if you want to change the projection to wgs 1984 (the one used in google maps) you need to add
 ## the flag -s 26986:4326 before the name of the database (gis)
-#+END_SRC
+#+end_src
 
-If you open *QGIS* you should see something like the following:
+if you open *qgis* you should see something like the following:
 
+#+caption: ~land~ (purple), ~hydrology~ (red) and ~roads~ (blue) after their insertion in the database
 [[file:images/before.png]]
 
 and after some customization:
 
+#+caption: After adjusting the style in *QGIS*: ~land~ (one color per type), ~hydrology~ (blue) and ~roads~ (yellow)
 [[file:images/after.png]]
 
-Note that we have /lands/ over the /roads/ and over the /water/.
+note that we have /lands/ over the /roads/ and over the /water/.
 
 ** Spatial operations for cleaning
+
+- We will use ~st_intersects()~  and ~st_dwithin()~ for removing the land which
+  is touch with roads and water, and if it is too far of roads and water, respectively
+
+- See the file [[file:sql/unviable_land.sql]] for the ~sql~ statements.
+
+- *NOTE:* For use of the ~EXISTS(subquery)~ look [[http://www.techonthenet.com/postgresql/exists.php][here]] and [[https://www.postgresql.org/docs/9.5/static/functions-subquery.html][here]]
+
+#+caption: After removing the land objects which intersects roads or water or where too far from those.
+[[file:images/after_2.png]]
+
+- ~St_intersects(a,b)~  returns ~true~  if exists at least one point in common between the geometrical objects ~a~ and ~b~.
+
+- ~St_dwithin(a,b,distance)~ returns ~true~ if the geometries ~a~ and ~b~ are within the specified distance of one another.
+
+- Other functions: ~st_equals~, ~st_disjoint~, ~st_touches~, ~st_crosses~, ~st_overlaps~, ~st_contains~.
+
+** Add more data: ~buildings~ and ~residents~
+
+Upload to the database the shapefiles ~buildings~ and ~residents~.
+
+#+BEGIN_SRC sh :eval never
+## This time I will use ogr2ogr, but this is for demostration purpose only
+## It is easier use shp2pgsql
+ogr2ogr -f "PostgreSQL" PG:"host=localhost user=dssg_gis dbname=gis_tutorial password=dssg-gis port=8889" buildings.shp -nln tutorial.buildings
+#+END_SRC

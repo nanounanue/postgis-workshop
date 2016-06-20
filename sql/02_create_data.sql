@@ -3,7 +3,7 @@
 
 
 -- Insert buildings
-INSERT INTO building(bldg_name, bldg_type, the_geom)
+INSERT INTO buildings(bldg_name, bldg_type, the_geom)
 SELECT pid, land_type,
 ST_Multi(ST_Buffer(ST_ConvexHull(ST_Collect(ST_PointOnSurface(the_geom),
 ST_Centroid(ST_MinimumBoundingCircle(the_geom, 1 + mod(CAST(ST_Ymin(the_geom) As
