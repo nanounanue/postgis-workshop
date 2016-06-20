@@ -124,32 +124,32 @@ Spatial data is usually related to other types of data.
 
 ** Connect to the db
 
-#+begin_src sh :eval never
+#+BEGIN_SRC sh :eval never
 host:  gis-tutorial.c5faqozfo86k.us-west-2.rds.amazonaws.com
 port: 5432
 username: dssg_gis
 password: dssg-gis
 db name:gis_tutorial
-#+end_src
+#+END_SRC
 
 
-#+begin_src sh :eval never
+#+BEGIN_SRC sh :eval never
 ssh -fnt -l 8889:gis-tutorial.c5faqozfo86k.us-west-2.rds.amazonaws.com:5432 -i ~/.ssh/dssg-2016 sedesol.dssg.io  ## ssh tunneling
-#+end_src
+#+END_SRC
 
 
-#+begin_src sh :eval never
+#+BEGIN_SRC sh :eval never
 psql -h localhost -p 8889 -u dssg_gis  gis_tutorial
-#+end_src
+#+END_SRC
 
 ** Setup
 
 - create an ~schema~ using your ~github~ account
   - (mine is ~nanounanue~)
 
-#+begin_src sql :eval never
+#+BEGIN_SRC sql :eval never
 create schema nanounanue;
-#+end_src
+#+END_SRC
 
 ** Upload the first shapefiles
 
@@ -157,13 +157,13 @@ create schema nanounanue;
 
 - First, we can see some information from the files
 
-#+begin_src sh :eval never
+#+BEGIN_SRC sh :eval never
 ogrinfo -al roads.shp
-#+end_src
+#+END_SRC
 
 Observe that the projection is
 
-#+begin_src sh :eval never
+#+BEGIN_SRC sh :eval never
 ...
 projcs["nad83_massachusetts_mainland",
     geogcs["gcs_north_american_1983",
@@ -180,17 +180,17 @@ projcs["nad83_massachusetts_mainland",
     parameter["false_northing",750000],
     unit["meter",1]]
 ...
-#+end_src
+#+END_SRC
 
 This projection measures the *area* in meters. but
 
 - Using ~shp2psql~ tool upload the following files: ~roads~, ~land~, ~hydrology~
 
-#+begin_src sh :eval never
+#+BEGIN_SRC sh :eval never
 shp2psql --host=localhost --port=8889 --username=dssg_gis -f roads.shp gis tutorial.roads | psql -h localhost -p 8889 -u dssg_gis  gis_tutorial
 ## if you want to change the projection to wgs 1984 (the one used in google maps) you need to add
 ## the flag -s 26986:4326 before the name of the database (gis)
-#+end_src
+#+END_SRC
 
 If you open *QGIS* you should see something like the following:
 
