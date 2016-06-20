@@ -178,7 +178,7 @@ ssh -fNT -L \
 Command line client
 
 #+BEGIN_EXAMPLE sh
-psql -h localhost -p 8889 -u dssg_gis  gis_tutorial
+psql -h localhost -p 8889 -U dssg_gis  gis_tutorial
 #+END_EXAMPLE
 
 ** Setup
