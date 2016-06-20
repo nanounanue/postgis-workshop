@@ -31,7 +31,7 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h1 class="title">PostGis Workshop</h1><h2 class="author">Adolfo De Unánue</h2><h2 class="date">Data Science for Social Good 2016</h2><p class="date">Created: 2016-06-20 lun 12:05</p>
+<section id="sec-title-slide"><h1 class="title">PostGis Workshop</h1><h2 class="author">Adolfo De Unánue</h2><h2 class="date">Data Science for Social Good 2016</h2><p class="date">Created: 2016-06-20 lun 12:56</p>
 </section>
 
 
@@ -382,7 +382,7 @@ SSH Tunneling
 </p>
 
 <pre class="example">
-ssh -fnt -l \
+ssh -fNT -L \
     8889:gis-tutorial.c5faqozfo86k.us-west-2.rds.amazonaws.com:5432  \
     -i ~/.ssh/your-dssh-key ec2-instance.dssg.io  ## ssh tunneling
 </pre>

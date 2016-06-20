@@ -168,7 +168,7 @@ db name:gis_tutorial
 SSH Tunneling
 
 #+BEGIN_EXAMPLE sh
-ssh -fnt -l \
+ssh -fNT -L \
     8889:gis-tutorial.c5faqozfo86k.us-west-2.rds.amazonaws.com:5432  \
     -i ~/.ssh/your-dssh-key ec2-instance.dssg.io  ## ssh tunneling
 #+END_EXAMPLE
