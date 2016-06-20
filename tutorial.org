@@ -1,53 +1,54 @@
-* a little of theory
+* A little of theory
 
-** spatial database
-
-
-- storage of spatial data
-- analysis of geographic data
-- manipulation of spatial objects just like the other database objects
-  - creation of subsets of data
-  - fixing geographic data
-- database backend for apps
-
-** spatial data
-
-- data which describes or represents either a location or a shape
-
-- points, lines, polygons
-
-- besides the geometrical properties, the spatial data has attributes.
-
-** spatial data
-
-- examples:
-  - geocodable address
-  - crime patterns
-  - ems / patient location
-  - weather information
-  - city planning
-  - hazard detection
-
-** relationships
-
-- proximity
-- adjacency (touching,connectivity)
-- containment
-
-** operations
-
-- area
-- length
-- intersection
-- union
-- buffer
+** Spatial database
 
 
-** why a db instead of a file?
+- Storage of spatial data
+- Analysis of geographic data
+- Manipulation of spatial objects just like the other database objects
+  - Creation of subsets of data
+  - Fixing geographic data
+  - $\ldots$
+- Database backend for apps
 
-spatial data is usually related to other types of data.
+** Spatial data
 
-** how load data to the db?
+- Data which describes or represents either a location or a shape
+
+- Points, lines, polygons
+
+- Besides the geometrical properties, the spatial data has attributes.
+
+** Spatial data
+
+- Examples:
+  - Geocodable address
+  - Crime patterns
+  - EMS / patient location
+  - Weather information
+  - City planning
+  - Hazard detection
+
+** Relationships
+
+- Proximity
+- Adjacency (touching, connectivity)
+- Containment
+
+** Operations
+
+- Area
+- Length
+- Intersection
+- Union
+- Buffer
+
+
+** Why a db instead of a file?
+
+Spatial data is usually related to other types of data.
+
+** How load data to the db?
 
 - `shp2pgsql`
   - imports standard *esri* shapefiles and `dbf`
@@ -56,7 +57,7 @@ spatial data is usually related to other types of data.
   - imports 20 different vector and flat files
 
 
-** the spatial data that is not spatial data
+** The spatial data that is not spatial data
 
 | longitude |   latitude | disease | date       |
 |-----------+------------+---------+------------|
@@ -73,9 +74,9 @@ spatial data is usually related to other types of data.
 
 ** /shape files/
 
-- stored in files on the computer
-- the most common one is probably the 'shape file'
-  - it consists of at least three different files that work together to store vector data
+- Stored in files on the computer
+- The most common one is probably the 'shape file'
+  - It consists of at least three different files that work together to store vector data
 
 | extension | description         |
 |-----------+---------------------|
@@ -85,43 +86,43 @@ spatial data is usually related to other types of data.
 
 
 
-** vector data
+** Vector data
 
-- is stored as a series of x,y coordinate pairs inside the computer's memory.
-- vector data is used to represent points (1 vertex) , lines (polyline) (2 or more vertices, but the first and the last one are different) and areas (polygons)..
-- a vector feature has its shape represented using geometry.
-- the geometry is made up of one or more interconnected vertices.
-- a vertex describes a position in space using an x, y and optionally z axis.
-- the x and y values will depend on the coordinate reference system (crs) being used.
+- Is stored as a series of x,y coordinate pairs inside the computer's memory.
+- Vector data is used to represent points (1 vertex) , lines (polyline) (2 or more vertices, but the first and the last one are different) and areas (polygons)..
+- A vector feature has its shape represented using geometry.
+- The geometry is made up of one or more interconnected vertices.
+- A vertex describes a position in space using an x, y and optionally z axis.
+- The x and y values will depend on the coordinate reference system (crs) being used.
 
-** problems with vector data
+** Problems with vector data
 
-#+caption: image from /a genle introduction to gis/ *sutton t., dassau o., sutton m.* ~2009~
+#+caption: Image from /a genle introduction to gis/ *sutton t., dassau o., sutton m.* ~2009~
 [[file:./images/sliver.png]]
 
 
-#+caption: image from /a genle introduction to gis/ *sutton t., dassau o., sutton m.* ~2009~
+#+caption: Image from /a genle introduction to gis/ *sutton t., dassau o., sutton m.* ~2009~
 [[file:images/overshoot_undershoot.png]]
 
-** raster data
+** Raster data
 
-- stored as a grid of values
-- each /cell/ or /pixel/ represents a geographical region, and the value of the pixel represents some attribute of the region
-- use it when you want to represent a continuous information across an area
-- multi-band images, each band contains different information
+- Stored as a grid of values
+- Each /cell/ or /pixel/ represents a geographical region, and the value of the pixel represents some attribute of the region
+- Use it when you want to represent a continuous information across an area
+- /Multi-band/ images, each /band/ contains different information
 
-#+caption: image from /a genle introduction to gis/ *sutton t., dassau o., sutton m.* ~2009~
+#+caption: Image from /a genle introduction to gis/ *sutton t., dassau o., sutton m.* ~2009~
 [[file:images/raster.png]]
 
 
-** problems with raster data
+** Problems with raster data
 
-- high resolution raster data requires a huge amount of computer storage.
+- High resolution raster data requires a huge amount of computer storage.
 
 
-* demo / exercise
+* Demo / exercise
 
-** connect to the db
+** Connect to the db
 
 #+begin_src sh :eval never
 host:  gis-tutorial.c5faqozfo86k.us-west-2.rds.amazonaws.com
@@ -141,7 +142,7 @@ ssh -fnt -l 8889:gis-tutorial.c5faqozfo86k.us-west-2.rds.amazonaws.com:5432 -i ~
 psql -h localhost -p 8889 -u dssg_gis  gis_tutorial
 #+end_src
 
-** setup
+** Setup
 
 - create an ~schema~ using your ~github~ account
   - (mine is ~nanounanue~)
@@ -150,17 +151,17 @@ psql -h localhost -p 8889 -u dssg_gis  gis_tutorial
 create schema nanounanue;
 #+end_src
 
-** upload the shapefiles
+** Upload the first shapefiles
 
-- there are several /shapefiles/ in the ~data~ directory
+- There are several /shapefiles/ in the ~data~ directory
 
-- we can see some information from the files
+- First, we can see some information from the files
 
 #+begin_src sh :eval never
-ogr2ogr -al roads.shp
+ogrinfo -al roads.shp
 #+end_src
 
-observe that the projection is
+Observe that the projection is
 
 #+begin_src sh :eval never
 ...
@@ -181,9 +182,9 @@ projcs["nad83_massachusetts_mainland",
 ...
 #+end_src
 
-this projection measures the *area* in meters. but
+This projection measures the *area* in meters. but
 
-- using ~shp2psql~ tool upload the following files: ~roads~, ~land~, ~hydrology~
+- Using ~shp2psql~ tool upload the following files: ~roads~, ~land~, ~hydrology~
 
 #+begin_src sh :eval never
 shp2psql --host=localhost --port=8889 --username=dssg_gis -f roads.shp gis tutorial.roads | psql -h localhost -p 8889 -u dssg_gis  gis_tutorial
@@ -191,7 +192,7 @@ shp2psql --host=localhost --port=8889 --username=dssg_gis -f roads.shp gis tutor
 ## the flag -s 26986:4326 before the name of the database (gis)
 #+end_src
 
-if you open *qgis* you should see something like the following:
+If you open *QGIS* you should see something like the following:
 
 #+caption: ~land~ (purple), ~hydrology~ (red) and ~roads~ (blue) after their insertion in the database
 [[file:images/before.png]]
