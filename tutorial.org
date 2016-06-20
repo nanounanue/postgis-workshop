@@ -1,3 +1,30 @@
+#+Title:     PostGis Workshop
+#+Author:    Adolfo De Unánue
+#+Email:     @nano_unanue
+#+DATE:      Data Science for Social Good 2016
+#+DESCRIPTION:
+#+EXCLUDE_TAGS: noexport
+#+KEYWORDS:
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+PROPERTY: header-args    :cache yes
+#+PROPERTY: header-args:sh :results output :exports both :tangle no
+#+OPTIONS: reveal_center:t reveal_progress:t reveal_history:t reveal_control:t
+#+OPTIONS: reveal_rolling_links:t reveal_keyboard:t reveal_overview:t num:nil
+#+OPTIONS: reveal_width:1200 reveal_height:800
+#+OPTIONS: toc:nil
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/reveal.js/3.0.0
+#+REVEAL_MARGIN: 0.1
+#+REVEAL_MIN_SCALE: 0.5
+#+REVEAL_MAX_SCALE: 2.5
+#+REVEAL_TRANS: linear
+#+REVEAL_THEME: white
+#+REVEAL_HLEVEL: 2
+#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="Github Flow"/>
+#+REVEAL_POSTAMBLE: <p> Creada por Adolfo De Unánue. </p>
+#+REVEAL_PLUGINS: (markdown notes zoom highlight search classList)
+
+
 * PostGIS Workshop
 
 * A little of theory
@@ -52,10 +79,10 @@ Spatial data is usually related to other types of data.
 
 ** How load data to the db?
 
-- `shp2pgsql`
-  - imports standard *esri* shapefiles and `dbf`
+- ~shp2pgsql~
+  - imports standard *esri* shapefiles and ~dbf~
 
-- `ogr2ogr`
+- ~ogr2ogr~
   - imports 20 different vector and flat files
 
 
@@ -466,6 +493,6 @@ Converting to ~GeoJSON~
    FROM cities   ) As f )  As fc) to '~/cities.geojson';
 #+END_EXAMPLE
 
-- This type of file could be used with `d3.js` for making interactive plots.
+- This type of file could be used with ~d3.js~ for making interactive plots.
 
 - For better performance you could use ~topojson~
