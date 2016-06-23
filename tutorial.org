@@ -344,8 +344,8 @@ How much real state area do we have?
 
 #+BEGIN_EXAMPLE sql
 select
-sum(st_area(the_geom))/1000 as total_sq_km
-, st_area(st_union(the_geom))/1000 as no_overlap_total_sq_km
+sum(st_area(the_geom))/1000000 as total_sq_km
+, st_area(st_union(the_geom))/1000000 as no_overlap_total_sq_km
 -- st_union dissolves the overlaps!
 from land;
 #+END_EXAMPLE
@@ -356,8 +356,8 @@ Oh, oh. And  buildings?
 
 #+BEGIN_EXAMPLE sql
 select
-sum(st_area(the_geom))/1000 as total_sq_km
-, st_area(st_union(the_geom))/1000 as no_overlap_total_sq_km
+sum(st_area(the_geom))/1000000 as total_sq_km
+, st_area(st_union(the_geom))/1000000 as no_overlap_total_sq_km
 from buildings;
 #+END_EXAMPLE
 
@@ -482,7 +482,7 @@ where eschools.pid is null;
 How much area are in empty lands?
 
 #+BEGIN_EXAMPLE sql
-select st_area(st_union(the_geom))/1000
+select st_area(st_union(the_geom))/1000000
 from land
 where
 land_type = 'vacant land';
